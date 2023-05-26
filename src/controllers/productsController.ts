@@ -9,6 +9,13 @@ async function registerProduct(req: Request, res: Response): Promise<Response> {
   return res.status(mapStatusHTTP(result.status)).json(result.data);
 }
 
+async function getAllProducts(req: Request, res: Response): Promise<Response> {
+  const result = await productsService.getAllProducts();
+
+  return res.status(mapStatusHTTP(result.status)).json(result.data);
+}
+
 export default { 
-  registerProduct, 
+  registerProduct,
+  getAllProducts,
 };
