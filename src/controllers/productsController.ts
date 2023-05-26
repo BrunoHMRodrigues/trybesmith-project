@@ -10,9 +10,7 @@ import mapStatusHTTP from '../utils/mapStatusHTTP';
 // };
 
 async function registerProduct(req: Request, res: Response): Promise<Response> {
-  // const productData = req.body;
   const { name, price, orderId } = req.body;
-  // const result = await productsService.createProduct(productData);
   const result = await productsService.createProduct({ name, price, orderId });
 
   return res.status(mapStatusHTTP(result.status)).json(result.data);
