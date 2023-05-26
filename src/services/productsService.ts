@@ -6,7 +6,7 @@ import ProductModel, {
 } from '../database/models/product.model';
 
 // type ProductCreationAttributes = Omit<Product, 'id'>;
-type ProductResponseAttributes = Omit<Product, 'orderId'>;
+export type ProductResponseAttributes = Omit<Product, 'orderId'>;
 
 async function createProduct(productData: ProductInputtableTypes)
   : Promise<ServiceResponse<ProductResponseAttributes>> {
