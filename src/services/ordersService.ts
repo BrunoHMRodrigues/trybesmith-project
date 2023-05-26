@@ -1,3 +1,4 @@
+import { Sequelize } from 'sequelize';
 import { ServiceResponse } from '../types/serviceResponse';
 import ProductModel from '../database/models/product.model';
 import OrderModel, {
@@ -12,14 +13,17 @@ async function getAllOrders(): Promise<ServiceResponse<OrderSequelizeModel[]>> {
   const orders = await OrderModel.findAll({
     include: [{ 
       model: ProductModel,
-      attributes: ['id'],
+      attributes: [],
       as: 'productIds',
     }],
-    // raw: true,
-    nest: true,
+    attributes: [
+      'id',
+      'userId',
+      [Sequelize.fn('JSON_ARRAYAGG', Sequelize.col('productIds.id')), 'productIds'],
+    ],
+    group: ['Order.id'],
+    raw: true,
   });
-
-  //   const { orderId, ...productDataValues } = product.dataValues;
 
   return { status: 'SUCCESS', data: orders };
 }
