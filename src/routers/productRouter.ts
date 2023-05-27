@@ -1,9 +1,11 @@
 import { Router } from 'express';
+import productsMiddlewares from '../middlewares/productsMiddlewares';
 import productsController from '../controllers/productsController';
 
-const productRouter = Router();
+const { verifyProductName, verifyProductPrice } = productsMiddlewares;
 
-productRouter.post('/', productsController.registerProduct);
+const productRouter = Router();
+productRouter.post('/', verifyProductName, verifyProductPrice, productsController.registerProduct);
 
 productRouter.get('/', productsController.getAllProducts);
 
