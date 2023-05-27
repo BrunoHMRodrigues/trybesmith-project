@@ -9,7 +9,7 @@ async function verifyLogin(username: string, password: string): Promise<ServiceR
   if (!host || !bcrypt.compareSync(password, host.dataValues.password)) {
     return { status: 'INVALID', data: { message: 'Username or password invalid' } };
   }
-
+    
   const token = jwtUtil
     .sign({ password: host.dataValues.password, username: host.dataValues.username });
   

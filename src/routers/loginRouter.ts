@@ -6,6 +6,6 @@ const { verifyRequestData } = loginVerifications;
 
 const loginRouter = Router();
 
-loginRouter.get('/', verifyRequestData, loginController.login);
+loginRouter.post('/', verifyRequestData, loginController.login);
 
 export default loginRouter;
