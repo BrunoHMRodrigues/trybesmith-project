@@ -1,5 +1,5 @@
-import { Product } from 'src/types/Product';
-import { ServiceResponse } from 'src/types/serviceResponse';
+import { Product } from '../types/Product';
+import { ServiceResponse } from '../types/serviceResponse';
 import ProductModel, {
   ProductInputtableTypes,
   ProductSequelizeModel,
